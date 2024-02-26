@@ -113,10 +113,10 @@ class stages_of_paddy :
     
 
 class Substandard_or_not : 
-    def __init__(self,image) -> None:
+    def __init__(self) -> None:
         pass
 
-    def predict(self): 
+    def predict(self,image): 
         np.set_printoptions(suppress=True)
 
         model = load_model("models/substandard_or_not.h5", compile=False)

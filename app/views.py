@@ -13,6 +13,8 @@ def cultivated_or_not(request):
         file = forms.FileField()
 
     title = "Cultivated or not"
+     
+    message_tag = 'alert-info'
 
     if request.method == "POST" : 
 
@@ -23,9 +25,15 @@ def cultivated_or_not(request):
         test = pred_models.cultivated_or_not() 
         
         result,class_names,prediction = test.predict(uploaded_image)
+       
         result_str = f"Result is {result}"
 
-        messages.success(request,result_str)
+        if result == "good" : 
+            messages.success(request,result_str)
+        else : 
+            messages.error(request,result_str)
+
+
         return redirect('index')
 
     else : 
@@ -51,8 +59,11 @@ def rice_classification(request):
         
         result,class_names,prediction = test.predict(uploaded_image)
         result_str = f"Result is {result}"
-
-        messages.success(request,result_str)
+        
+        if result == "substandard" : 
+            messages.error(request,result_str)
+        else: 
+            messages.success(request,result_str)
         return redirect('index')
 
     else : 
@@ -77,8 +88,11 @@ def Substandard_or_not(request):
 
         result,class_names,prediction = test.predict(uploaded_image)
         result_str = f"Result is {result}"
+        if result == "good" : 
+            messages.success(request,result_str)
+        else : 
+            messages.error(request,result_str)
 
-        messages.success(request,result_str)
         return redirect('index')
         
 
@@ -106,7 +120,8 @@ def stages_of_paddy(request):
         result,class_names,prediction = test.predict(uploaded_image)
         result_str = f"Result is {result}"
 
-        messages.success(request,result_str)
+        messages.info(request,result_str)
+        
         return redirect('index')
     else : 
         form = FileForm()
