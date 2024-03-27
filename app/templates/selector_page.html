@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+<style>
+    .list-group {
+        list-style: none;
+        padding-left: 0;
+        
+      }
+      
+      .list-group-item {
+        border: none;
+        border-radius: 0;
+        background-color : rgba(30, 30, 30, 0.295);
+      
+      }
+</style>
+
+
+{{message_tag}}
+<br>
+    <br>
+    <br>
+
+    <br>
+
+<div class='container'>
+    {% if messages %}
+    <!-- Loop through each message -->
+        {% for message in messages %}
+            <!-- Check if the message is a success message -->
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success">
+                <!-- Display the message content -->
+                {{ message }}
+            </div>
+
+            {% elif message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <!-- Display the message content -->
+                {{ message }}
+            </div>
+
+            {% else %}
+            <div class="alert alert-info">
+                <!-- Display the message content -->
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+
+
+      <h3>Select which dectector you would like to use</h3><br>
+
+      <ul class="list-group" >
+          <li class="list-group-item">  <a style="color: aliceblue;" href="cultivated_or_not/">Cultivation Detector</a><br></li>
+          <li class="list-group-item">  <a style="color: aliceblue;" href='rice_classification/'>Rice Type Dectector </a><br></li>
+          <li class="list-group-item">  <a style="color: aliceblue;" href='stages_of_paddy/'>Stages Of Paddy Dectector</a><br></li>
+          <li class="list-group-item">  <a  style="color: aliceblue;"href='substandard_or_not/'>Quality Check Classifier</a><br></li>
+      
+      </ul>
+   
+</div>
+{% endblock  %}
