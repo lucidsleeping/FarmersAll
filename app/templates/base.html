@@ -1,18 +1,56 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FarmersAll</title>
-    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  </head>
-  <body>
+
     
-    <div class="container">
-      {% block body_block %}
+</head>
 
-      {% endblock %}
+<div
+  class="bg-image"
+  style="
+    background-image: url('https://images.unsplash.com/photo-1622036900222-52acc29bc2c3?q=80&w=3872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: 100% 100%;
+
+    z-index: -1; 
+
+  "
+>
+<div class="mask" style="height: 100vh; background-color: rgba(30, 30, 30, 0.295);">
+  <div class="d-flex justify-content-center align-items-center h-100">
+<body>
+
+  <div class="mask" style=" background-color: rgba(255, 255, 255, 0.219);">
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+             <!-- <img class="title" src = "../static/img/farmersall.jpg"> -->
+             FarmersAll
+          </a>
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a href="{% url 'index' %}" class="mr-5 text-gray-900">Home</a>
+            <a href="{% url 'about' %}" class="mr-5 text-gray-900">About</a>
+            <a href="{% url 'selector_page' %}" class="text-gray-900">Detectors</a>
+          </nav>
+        </div>
+      
+
+        
+      </header>
     </div>
+  
 
-  </body>
+    {% block body_block %} 
+    
+    {% endblock %}    
+
+</body>
+</div>
+</div>
 </html>

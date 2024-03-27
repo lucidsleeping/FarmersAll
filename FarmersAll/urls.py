@@ -20,8 +20,10 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.selector_view,name='index') ,
-    path('cultivated_or_not/',views.cultivated_or_not), 
+    path('',views.home_page,name='index') ,
+    path('/about',views.about_page,name='about'),
+    path('/selector',views.selector_page, name='selector_page'), 
+    path('cultivated_or_not/',views.cultivated_or_not,name='cultivated_or_not'), 
     path('rice_classification/', views.rice_classification), 
     path('stages_of_paddy/', views.stages_of_paddy), 
     path('substandard_or_not/',views.Substandard_or_not)

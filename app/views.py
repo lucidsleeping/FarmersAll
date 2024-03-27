@@ -3,9 +3,17 @@ from django.shortcuts import redirect, render,HttpResponse
 from django.contrib import messages
 from . import pred_models
 
-def selector_view(request) : 
+def home_page(request) : 
     
-    return render(request,"index.html") 
+    return render(request,"home.html") 
+
+def about_page(request) : 
+
+    return render(request,"about.html")
+
+def selector_page(request) : 
+    
+    return render(request,"selector_page.html")
 
 def cultivated_or_not(request): 
     
@@ -23,18 +31,21 @@ def cultivated_or_not(request):
         uploaded_image = request.FILES.get('file')
 
         test = pred_models.cultivated_or_not() 
-        
-        result,class_names,prediction = test.predict(uploaded_image)
+        try: 
+            result,class_names,prediction = test.predict(uploaded_image)
+            result_str = f"Result is {result}"
+
+            if result == "good" : 
+                messages.success(request,result_str)
+            else : 
+                messages.error(request,result_str)
+
+        except : 
+            messages.error(request,"Error proccessing the image.")
        
-        result_str = f"Result is {result}"
+        
 
-        if result == "good" : 
-            messages.success(request,result_str)
-        else : 
-            messages.error(request,result_str)
-
-
-        return redirect('index')
+        return redirect('selector_page')
 
     else : 
         form = FileForm()
@@ -64,7 +75,7 @@ def rice_classification(request):
             messages.error(request,result_str)
         else: 
             messages.success(request,result_str)
-        return redirect('index')
+        return redirect('selector_page')
 
     else : 
         form = FileForm()
@@ -93,7 +104,7 @@ def Substandard_or_not(request):
         else : 
             messages.error(request,result_str)
 
-        return redirect('index')
+        return redirect('selector_page')
         
 
     else : 
@@ -122,7 +133,7 @@ def stages_of_paddy(request):
 
         messages.info(request,result_str)
         
-        return redirect('index')
+        return redirect('selector_page')
     else : 
         form = FileForm()
 
